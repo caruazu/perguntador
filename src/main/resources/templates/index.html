@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perguntas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            display: none;
+        }
+        .question.active {
+            display: block;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="question active" id="question1">
+        <p>Pergunta 1: Você gosta de programar?</p>
+        <button onclick="handleAnswer(1, 'sim')">Sim</button>
+        <button onclick="handleAnswer(1, 'não')">Não</button>
+    </div>
+    <div class="question" id="question2">
+        <p>Pergunta 2: Você gosta de desafios?</p>
+        <button onclick="handleAnswer(2, 'sim')">Sim</button>
+        <button onclick="handleAnswer(2, 'não')">Não</button>
+    </div>
+    <div class="question" id="question3">
+        <p>Pergunta 3: Você gosta de aprender novas tecnologias?</p>
+        <button onclick="handleAnswer(3, 'sim')">Sim</button>
+        <button onclick="handleAnswer(3, 'não')">Não</button>
+    </div>
+</div>
+
+<script>
+    function handleAnswer(questionNumber, answer) {
+        if (answer === 'não') {
+            window.location.href = 'https://www.google.com';
+        } else {
+            const currentQuestion = document.getElementById('question' + questionNumber);
+
+            if(questionNumber < 3){
+
+                currentQuestion.classList.remove('active');
+                const nextQuestion = document.getElementById('question' + (questionNumber + 1));
+                if (nextQuestion) {
+                    nextQuestion.classList.add('active');
+                }
+
+            } else {
+                window.location.href = 'https://www.wikipedia.org';
+            }
+        }
+    }
+</script>
+</body>
+</html>
