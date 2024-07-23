@@ -42,34 +42,35 @@
 </head>
 <body>
 <div class="container">
-    <div class="question active" id="question1">
-        <p>Pergunta 1: Você gosta de programar?</p>
-        <button onclick="handleAnswer(1, 'sim')">Sim</button>
-        <button onclick="handleAnswer(1, 'não')">Não</button>
-    </div>
-    <div class="question" id="question2">
-        <p>Pergunta 2: Você gosta de desafios?</p>
-        <button onclick="handleAnswer(2, 'sim')">Sim</button>
-        <button onclick="handleAnswer(2, 'não')">Não</button>
-    </div>
-    <div class="question" id="question3">
-        <p>Pergunta 3: Você gosta de aprender novas tecnologias?</p>
-        <button onclick="handleAnswer(3, 'sim')">Sim</button>
-        <button onclick="handleAnswer(3, 'não')">Não</button>
+    <div th:each="pergunta : ${perguntas}">
+        <div class="question" th:id="'question'+${pergunta.id}">
+            <p th:text="${pergunta.titulo}" ></p>
+            <button th:pergunta-id="${pergunta.id}" th:onclick="handleAnswer(this.getAttribute('pergunta-id'),'sim')">Sim</button>
+            <button th:pergunta-id="${pergunta.id}" th:onclick="handleAnswer(this.getAttribute('pergunta-id'),'não')">Não</button>
+        </div>
     </div>
 </div>
 
-<script>
+<script th:inline="javascript">
+    const firstQuestion = document.getElementById('question1');
+    firstQuestion.classList.add('active');
+
     function handleAnswer(questionNumber, answer) {
+        const numero = Number(questionNumber);
         if (answer === 'não') {
             window.location.href = 'https://www.google.com';
         } else {
-            const currentQuestion = document.getElementById('question' + questionNumber);
+            const currentQuestion = document.getElementById('question' + numero);
 
-            if(questionNumber < 3){
+            // TODO: pegar a quantidade de perguntas
+            if(numero < 2){
 
                 currentQuestion.classList.remove('active');
-                const nextQuestion = document.getElementById('question' + (questionNumber + 1));
+
+                const nextQuestion = document.getElementById('question' +  (numero + 1));
+
+
+
                 if (nextQuestion) {
                     nextQuestion.classList.add('active');
                 }
@@ -80,5 +81,6 @@
         }
     }
 </script>
+
 </body>
 </html>

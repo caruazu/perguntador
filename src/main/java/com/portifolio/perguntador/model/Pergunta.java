@@ -1,5 +1,10 @@
 package com.portifolio.perguntador.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class Pergunta {
 
     public Pergunta(Long id, String titulo, String resposta) {
@@ -8,31 +13,12 @@ public class Pergunta {
         this.resposta = resposta;
     }
 
+
     private Long id;
     private String titulo;
     private String resposta;
 
-    public Long getId() {
-        return id;
-    }
+    public Pergunta() {
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getResposta() {
-        return resposta;
-    }
-
-    public void setResposta(String resposta) {
-        this.resposta = resposta;
     }
 }
