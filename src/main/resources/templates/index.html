@@ -52,7 +52,7 @@
 </div>
 
 <script th:inline="javascript">
-    const firstQuestion = document.getElementById('question1');
+    const firstQuestion = document.getElementById('question0');
     firstQuestion.classList.add('active');
 
     function handleAnswer(questionNumber, answer) {
@@ -68,8 +68,6 @@
                 currentQuestion.classList.remove('active');
 
                 const nextQuestion = document.getElementById('question' +  (numero + 1));
-
-
 
                 if (nextQuestion) {
                     nextQuestion.classList.add('active');

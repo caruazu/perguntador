@@ -14,18 +14,19 @@ public class PerguntaController {
     @GetMapping("/")
     public ModelAndView index() {
 
+        String[] titulos = {
+            "o céu é azul?",
+            "a terra é redonda?"
+        };
 
         List<Pergunta> perguntas = new ArrayList<>();
 
-        Pergunta pergunta1 = new Pergunta();
-        pergunta1.setId(1L);
-        pergunta1.setTitulo("Há suspeita ou confirmação de que a ocorrência do óbito foi devido negligência do profissional de saúde responsável?");
-        perguntas.add(pergunta1);
-
-        Pergunta pergunta2 = new Pergunta();
-        pergunta2.setId(2L);
-        pergunta2.setTitulo("A declaração de óbito está feita?");
-        perguntas.add(pergunta2);
+        for (int i = 0; i < titulos.length; i++) {
+            Pergunta pergunta = new Pergunta();
+            pergunta.setId(Long.valueOf(i));
+            pergunta.setTitulo(titulos[i]);
+            perguntas.add(pergunta);
+        }
 
         ModelAndView viewIndex = new ModelAndView("index");
         viewIndex.addObject("perguntas", perguntas);
