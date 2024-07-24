@@ -20,10 +20,10 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .question {
+        .pergunta {
             display: none;
         }
-        .question.active {
+        .pergunta.active {
             display: block;
         }
         button {
@@ -43,36 +43,29 @@
 <body>
 <div class="container">
     <div th:each="pergunta : ${perguntas}">
-        <div class="question" th:id="'question'+${pergunta.id}">
+        <div class="pergunta" th:id="'pergunta-'+${pergunta.id}">
             <p th:text="${pergunta.titulo}" ></p>
-            <button th:pergunta-id="${pergunta.id}" th:onclick="handleAnswer(this.getAttribute('pergunta-id'),'sim')">Sim</button>
-            <button th:pergunta-id="${pergunta.id}" th:onclick="handleAnswer(this.getAttribute('pergunta-id'),'não')">Não</button>
+            <button th:numero-pergunta="${pergunta.id}" th:onclick="gerenciarResposta(this.getAttribute('numero-pergunta'),'sim')">Sim</button>
+            <button th:numero-pergunta="${pergunta.id}" th:onclick="gerenciarResposta(this.getAttribute('numero-pergunta'),'não')">Não</button>
         </div>
     </div>
 </div>
 
 <script th:inline="javascript">
-    const firstQuestion = document.getElementById('question0');
-    firstQuestion.classList.add('active');
+    const primeiraPergunta = document.getElementById('pergunta-0');
+    primeiraPergunta.classList.add('active');
 
-    function handleAnswer(questionNumber, answer) {
-        const numero = Number(questionNumber);
-        if (answer === 'não') {
+    function gerenciarResposta(numeroPergunta, resposta) {
+        const numero = Number(numeroPergunta);
+        if (resposta === 'não') {
             window.location.href = 'https://www.google.com';
         } else {
-            const currentQuestion = document.getElementById('question' + numero);
+            const perguntaAtual = document.getElementById('pergunta-' + numero);
+            const proximaPergunta = document.getElementById('pergunta-' +  (numero + 1));
 
-            // TODO: pegar a quantidade de perguntas
-            if(numero < 2){
-
-                currentQuestion.classList.remove('active');
-
-                const nextQuestion = document.getElementById('question' +  (numero + 1));
-
-                if (nextQuestion) {
-                    nextQuestion.classList.add('active');
-                }
-
+            if(nextQuestion){
+                perguntaAtual.classList.remove('active');
+                proximaPergunta.classList.add('active');
             } else {
                 window.location.href = 'https://www.wikipedia.org';
             }

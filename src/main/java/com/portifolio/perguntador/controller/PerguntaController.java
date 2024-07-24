@@ -15,8 +15,8 @@ public class PerguntaController {
     public ModelAndView index() {
 
         String[] titulos = {
-            "o céu é azul?",
-            "a terra é redonda?"
+            "O céu é azul?",
+            "A terra é redonda?"
         };
 
         List<Pergunta> perguntas = new ArrayList<>();
