@@ -11,6 +11,11 @@ import java.util.List;
 @Controller
 public class PerguntaController {
 
+    @GetMapping("/public")
+    String publicRoute() {
+        return "/public/public.html";
+    }
+
     @GetMapping("/")
     public ModelAndView index() {
 
@@ -23,7 +28,7 @@ public class PerguntaController {
 
         for (int i = 0; i < titulos.length; i++) {
             Pergunta pergunta = new Pergunta();
-            pergunta.setId(Long.valueOf(i));
+            pergunta.setId((long) i);
             pergunta.setTitulo(titulos[i]);
             perguntas.add(pergunta);
         }

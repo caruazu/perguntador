@@ -63,7 +63,7 @@
             const perguntaAtual = document.getElementById('pergunta-' + numero);
             const proximaPergunta = document.getElementById('pergunta-' +  (numero + 1));
 
-            if(nextQuestion){
+            if(proximaPergunta){
                 perguntaAtual.classList.remove('active');
                 proximaPergunta.classList.add('active');
             } else {
